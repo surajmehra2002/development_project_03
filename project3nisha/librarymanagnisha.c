@@ -31,12 +31,8 @@ int main() {
 
             printf("\nTitle of the book: %s", title);
             printf("\nAuthor of the book: %s",author);
-              printf("\nBook Added successfully!\n");
+              printf("\nBook Added successfully!\n\n");
 
-           
-                
-                
-            
             case 2:
                  printf("this is task 2: display avilable books\n");
                  break;
@@ -57,14 +53,19 @@ int main() {
             case 6:
                 printf("This is task 6: Search book by author\n");
                 break;
-                
+             case 7:
+                printf("Exiting the program. Goodbye!\n");
+                break;
+
             default:
-                printf("%d is not a valid entry\n", choice);
+                getchar(); 
+                printf("'%c' is not a valid entry.\n Please enter a valid number .\n\n", choice);
                 break;
         }
-    } while (choice != 0);
+    } while (choice != 7);
 
     return 0;
 }
+                
 
 

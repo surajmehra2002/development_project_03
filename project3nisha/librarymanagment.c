@@ -3,6 +3,8 @@
 int main()
  {
     int choice;
+    char title[1][40];
+    char author[1][30];
 
     printf("\n\n********** Project-3 Library System Project **************\n");
     printf("\n1 - Add new book");
@@ -48,15 +50,12 @@ int main()
                
                 break;
                 
-            case 7:
-                printf("Exiting the program\n");
-                break;
-                
             default:
                 printf("%d is not a valid entry\n", choice);
                 break;
         }
     } while (choice != 0);
+
     
     return 0;
 }

@@ -21,6 +21,7 @@ int main() {
         scanf("%d", &choice);
         
         switch(choice) {
+
             case 1:
             printf("Enter title of the book:");
             scanf("%s",&title);
@@ -54,15 +55,22 @@ int main() {
                 printf("This is task 6: Search book by author\n");
                 break;
              case 7:
-                printf("Exiting the program. Goodbye!\n");
-                break;
-
+             if (choice == 0) {
+                    printf("%d is not a valid entry.\n\n exit this code", choice);
+                } else {
+                    getchar(); 
+                    printf("%d is not a valid entry.\nPlease enter a valid number.\n\n", choice);
+                }
+            
             default:
-                getchar(); 
-                printf("'%c' is not a valid entry.\n Please enter a valid number .\n\n", choice);
-                break;
+                
+                printf("%d is not a valid entry.\n", choice);
+                
+              break;
+            
+             
         }
-    } while (choice != 7);
+    } while (choice != 0);
 
     return 0;
 }

@@ -37,6 +37,7 @@ void add_book()
     
     printf("Book added successfully!\n");
     bookCount+=1;
+    
 
 }
 
@@ -97,20 +98,12 @@ void borrow_book()
                 
             }
             bookCount-=1;
-            // printf("%d\n",i);
             books[i][50]='\0';
-            authors[i][50]='\0';
-            // printf("%s in borrow_list_book\n", borrow_list_books[i]);
-            // // printf("%s removing.. from books[%d]\n", borrow, i);
-            // for(int j = 0; j<bookCount; j++)
-            //     {
-            //         printf("books[%d] is %s\n", j, books[j]);
-            //     }                
+            authors[i][50]='\0';         
             access=1;  
             goto checking;     
             // }     
         }  
-        // printf("\nbooks[%d] , is not %s ", i, borrow); 
    }
     for (int i = 0; i < 3; i++)
     {
@@ -119,6 +112,7 @@ void borrow_book()
        {
         printf("%s book already borrow\n", borrow);
         access1=1;
+        break;  
        }
        
     }
@@ -142,15 +136,15 @@ void return_book()
         {
             // for (int i = 0; i < bookCount; i++)
             // {
-                //  if (strcmp(books[i],"")==0)
-                //  {
-            strcpy(books[0],borrow_list_books[j]);
-            strcpy(authors[0],borrow_list_authors[j]);
+            //      if (strcmp(books[i],"")==0)
+            //      {
+                    strcpy(books[0],borrow_list_books[j]);
+                    strcpy(authors[0],borrow_list_authors[j]);
+                            
+                    borrow_list_books[j][50]='\0';
+                    borrow_list_authors[j][50]='\0';
                     
-            // borrow_list_books[j][50]='\0';
-            // borrow_list_authors[j][50]='\0';
-                    
-                //  }
+            //      }
             // }
             
             printf("\nYou have successfully returned '%s' book\n",borrow_list_books[j]);
@@ -160,9 +154,7 @@ void return_book()
         else if(strcmp(borrow_list_books[j],return_borrow)!=0 && j==2)
         {
             printf("\nNo '%s' book found for return.\n",return_borrow);
-            
         }
-        
         
     }
     

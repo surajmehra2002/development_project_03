@@ -8,7 +8,8 @@ char authors[10][50];
 char borrow_list_books[10][50];
 char borrow_list_authors[10][50];
 
-int bookCount = 0;
+int Available_book = 0;
+int Borrowed_book = 0;
     
 
 /*function declearation*/
@@ -16,6 +17,7 @@ void add_book();
 void display_book();     
 void borrow_book();     
 void return_book();     
+void search_title();     
 
 
 
@@ -27,16 +29,18 @@ void add_book()
 
     printf("Enter the title of the book: ");
     // fgets(title, sizeof(title), stdin);
-    scanf("%s", &title);
-    strcpy(books[bookCount], title);
+    gets(title);
+    // scanf("%[^\n]", &title);
+    strcpy(books[Available_book], title);
 
     printf("Enter the author of the book: ");
+    gets(author);
     // fgets(author, sizeof(author), stdin);
-    scanf("%s", &author);
-    strcpy(authors[bookCount], author);
+    // scanf("%[^\n]", &author);
+    strcpy(authors[Available_book], author);
     
     printf("Book added successfully!\n");
-    bookCount+=1;
+    Available_book+=1;
     
 
 }
@@ -44,7 +48,7 @@ void add_book()
 void display_book()           
 {
    
-    if(bookCount==0){
+    if(Available_book==0){
         printf("Sorry! No books available in library...\n");
     }
     else{
@@ -57,7 +61,7 @@ void display_book()
 
 
 
-        for (int i = 0; i < bookCount; i++)
+        for (int i = 0; i < Available_book; i++)
         {
             printf("%s\t\t\t\t%s", books[i], authors[i]);
             printf("\n");
@@ -72,17 +76,18 @@ void borrow_book()
 {   
     int access = 0, access1=0;
     char borrow[20];
+
+    // temp array for restore 
+    char books
     
     printf("Enter the title of the book you want to borrow: ");
-    scanf("%s", &borrow);
-    // printf("From %d books, ", bookCount);
-   for (int i=0; i<bookCount; i++)
+    gets(borrow);
+   for (int i=0; i<Available_book; i++)
    {    
-        if(strcmp(borrow, books[i]) == 0)
-        {      
-            printf("You have borrowed '%s' book which author name is %s\n",books[i],authors[i]);
-            
-            for (int j=0; j<3;j++)
+        if(strcmp(books[i], borrow) == 0)
+        {   
+            Borrowed_book+=1;
+            for (int j=0; j<Borrowed_book;j++)
             {
                 if (strcmp(borrow_list_books[j], "")==0)
                 {
@@ -94,16 +99,22 @@ void borrow_book()
                 {
                     printf("\nSorry! Lot's of books are borrow! After return those books tri to borrow \n");
                 }
-                
-                
             }
-            bookCount-=1;
-            books[i][50]='\0';
-            authors[i][50]='\0';         
+            printf("You have borrowed '%s' book which author name is %s\n",books[i],authors[i]);
+
+
+            Available_book-=1;
+            
+            // books[i][50]='\0';
+            // authors[i][50]='\0'; 
+                    
             access=1;  
             goto checking;     
             // }     
         }  
+        else{
+
+        }
    }
     for (int i = 0; i < 3; i++)
     {
@@ -129,23 +140,21 @@ void return_book()
 {
     char return_borrow[20];
     printf("Enter the title of the book you want to return: ");
-    scanf("%s",&return_borrow);
+    gets(return_borrow);
     for (int j = 0; j < 3; j++)
     {
         if (strcmp(borrow_list_books[j],return_borrow)==0)
         {
-            // for (int i = 0; i < bookCount; i++)
-            // {
-            //      if (strcmp(books[i],"")==0)
-            //      {
+           
                     strcpy(books[0],borrow_list_books[j]);
                     strcpy(authors[0],borrow_list_authors[j]);
                             
                     borrow_list_books[j][50]='\0';
                     borrow_list_authors[j][50]='\0';
                     
-            //      }
-            // }
+           for (
+
+           )
             
             printf("\nYou have successfully returned '%s' book\n",borrow_list_books[j]);
             // printf("\n'%s' book found in borrow_list_books[%d]\n",borrow_list_books[j],j);
@@ -190,6 +199,8 @@ do
     }
     else if (task==2)
     {
+        printf("Available books are: %d\n",Available_book);
+        printf("Borrow books are: %d\n\n",Borrowed_book);
         display_book();
         
     }
@@ -203,7 +214,7 @@ do
     }
     else if (task==5)
     {
-        printf("This is task 5\n");
+        search_title();
     }
     else if (task==6)
     {printf("\nThease books are in borrow: \n");
@@ -216,7 +227,6 @@ do
     else
     {
         printf("Please enter valid task no (task 0 to 5)\n\n");
-        
     }
 
 

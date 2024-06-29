@@ -107,7 +107,7 @@ void borrow_book()
    
     do
     {
-        printf("Enter the title of the book you want to return: ");
+        printf("Enter the title of the book you want to Borrow: ");
         gets(borrow);
     } while (strcmp(borrow,"")==0);
 
@@ -182,7 +182,6 @@ void return_book()
 
             strcpy(books[Available_book], borrow_list_books[j]);
             strcpy(authors[Available_book], borrow_list_authors[j]);
-            printf(GREEN"\n%s book Borrowed\n"RESET,Borrowed_book);
             
             Available_book++; 
             for (int k = j; k < Borrowed_book; k++)
